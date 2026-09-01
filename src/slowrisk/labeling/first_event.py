@@ -12,7 +12,7 @@ def first_event_dates(frame: pd.DataFrame, horizon_days: int = 30) -> pd.Series:
         group = group.sort_values("date").reset_index(drop=True)
         sales = group["sales_volume"]
         stock = group["stock_quantity"]
-        for start in range(0, len(group) - horizon_days + 1):
+        for start in range(len(group) - horizon_days + 1):
             if sales.iloc[start:start + horizon_days].eq(0).all() and stock.iloc[start:start + horizon_days].gt(0).all():
                 events[product_id] = group.loc[start, "date"]
                 break

@@ -25,7 +25,7 @@ class XGBRiskModel:
                                        subsample=0.9, colsample_bytree=0.9, reg_lambda=3.0, objective="binary:logistic",
                                        eval_metric="logloss", tree_method="hist", n_jobs=1, random_state=random_state)
 
-    def fit(self, frame: pd.DataFrame, target: np.ndarray, sample_weight: np.ndarray | None = None) -> "XGBRiskModel":
+    def fit(self, frame: pd.DataFrame, target: np.ndarray, sample_weight: np.ndarray | None = None) -> XGBRiskModel:
         matrix = self.preprocessor.fit_transform(frame[self.numeric_features + self.categorical_features])
         self.estimator.fit(matrix, target, sample_weight=sample_weight)
         return self
@@ -39,5 +39,5 @@ class XGBRiskModel:
         joblib.dump(self, path)
 
     @classmethod
-    def load(cls, path: str | Path) -> "XGBRiskModel":
+    def load(cls, path: str | Path) -> XGBRiskModel:
         return joblib.load(path)

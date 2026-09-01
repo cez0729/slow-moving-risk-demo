@@ -46,6 +46,12 @@ git status --short --ignored
 - Sensitive-data scan: PASS outside the publishing guide's example scan command; no company workbook, internal identifier, absolute company path, credential, token, or company metric was added.
 - Local Git repository: initialized; no commit or remote push was performed.
 
+## CI lint failure and fix
+
+The first GitHub Actions run failed at the `Lint` step while installation and synthetic data generation had already passed. The reported issues were Ruff `RUF046` redundant integer casts, `RUF100` unused `# noqa: E402` directives, `PIE808` for `range(0, ...)`, `UP037` quoted self-type annotations, and import ordering. The test, training, and scoring steps were skipped because the workflow stops after lint failure.
+
+The fix removed redundant casts, removed runtime `sys.path` injection from installed scripts, removed obsolete noqa comments, simplified the range, unquoted self-type annotations, and sorted imports. Local verification after the fix passed: Ruff `All checks passed`, Pytest `5 passed`, demo training PASS, and demo prediction PASS. The fix is ready to commit and push as a follow-up to the failed run.
+
 ## Demo metrics
 
 The generated synthetic-data run reported validation Recall `0.80`, validation F1 `0.3265`, test Recall `0.0`, and test F1 `0.0`. These are synthetic demo results only and must not be presented as real business performance.

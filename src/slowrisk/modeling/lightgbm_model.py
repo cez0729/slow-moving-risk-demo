@@ -24,7 +24,7 @@ class LightGBMRiskModel:
         self.estimator = LGBMClassifier(objective="binary", learning_rate=0.03, n_estimators=250, num_leaves=31,
                                         max_depth=-1, verbosity=-1, n_jobs=1, random_state=random_state)
 
-    def fit(self, frame: pd.DataFrame, target: np.ndarray, sample_weight: np.ndarray | None = None) -> "LightGBMRiskModel":
+    def fit(self, frame: pd.DataFrame, target: np.ndarray, sample_weight: np.ndarray | None = None) -> LightGBMRiskModel:
         matrix = self.preprocessor.fit_transform(frame[self.numeric_features + self.categorical_features])
         self.estimator.fit(matrix, target, sample_weight=sample_weight)
         return self
@@ -38,7 +38,7 @@ class LightGBMRiskModel:
         joblib.dump(self, path)
 
     @classmethod
-    def load(cls, path: str | Path) -> "LightGBMRiskModel":
+    def load(cls, path: str | Path) -> LightGBMRiskModel:
         return joblib.load(path)
 
 

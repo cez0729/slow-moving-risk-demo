@@ -1,17 +1,13 @@
 from __future__ import annotations
 
 import argparse
-import sys
 from pathlib import Path
 
 import yaml
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
-
-from slowrisk.data import load_data  # noqa: E402
-from slowrisk.features.pipeline import build_features  # noqa: E402
-from slowrisk.modeling.xgb import XGBRiskModel  # noqa: E402
+from slowrisk.data import load_data
+from slowrisk.features.pipeline import build_features
+from slowrisk.modeling.xgb import XGBRiskModel
 
 
 def main() -> None:

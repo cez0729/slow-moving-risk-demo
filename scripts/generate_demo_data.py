@@ -21,10 +21,10 @@ def generate_demo_data(products: int = 30, days: int = 365, seed: int = 42) -> p
         for day, date in enumerate(dates):
             promotion = int((day + index * 3) % 21 < 3)
             demand = max(0.0, base_demand * (1.15 if promotion else 1.0) + rng.normal(0, 0.8))
-            sales = int(round(demand))
+            sales = round(demand)
             if event_start is not None and day >= event_start:
                 sales = 0
-            stock = max(2, int(round(base_demand * 12 + rng.normal(0, 2))))
+            stock = max(2, round(base_demand * 12 + rng.normal(0, 2)))
             if event_start is not None and day >= event_start:
                 stock = max(stock, int(base_demand * 8))
             rows.append({"date": date, "product_id": product_id, "category": category,

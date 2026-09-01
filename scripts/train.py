@@ -2,20 +2,16 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 
 import pandas as pd
 import yaml
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
-
-from slowrisk.data import load_data  # noqa: E402
-from slowrisk.evaluation.event_metrics import event_metrics  # noqa: E402
-from slowrisk.evaluation.threshold import select_threshold  # noqa: E402
-from slowrisk.features.pipeline import CATEGORICAL_FEATURES, NUMERIC_FEATURES, build_features  # noqa: E402
-from slowrisk.modeling.xgb import XGBRiskModel  # noqa: E402
+from slowrisk.data import load_data
+from slowrisk.evaluation.event_metrics import event_metrics
+from slowrisk.evaluation.threshold import select_threshold
+from slowrisk.features.pipeline import CATEGORICAL_FEATURES, NUMERIC_FEATURES, build_features
+from slowrisk.modeling.xgb import XGBRiskModel
 
 
 def load_config(path: str | Path) -> dict:
