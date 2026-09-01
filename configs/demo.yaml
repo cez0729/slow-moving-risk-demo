@@ -1,0 +1,21 @@
+data:
+  path: data/demo.csv
+
+split:
+  train_end: 2025-06-30
+  validation_end: 2025-09-30
+  test_end: 2025-12-31
+
+label:
+  horizon_days: 30
+  alert_cooldown_days: 30
+
+model:
+  type: xgboost
+  random_state: 42
+
+threshold:
+  min_recall: 0.70
+
+output:
+  dir: artifacts/demo

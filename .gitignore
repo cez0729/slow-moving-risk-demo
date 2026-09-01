@@ -1,0 +1,13 @@
+.env
+*.xlsx
+*.xls
+*.parquet
+*.joblib
+artifacts/
+mlruns/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+data/demo.csv
