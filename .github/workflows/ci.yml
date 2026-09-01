@@ -17,7 +17,9 @@ jobs:
       - name: Generate synthetic data
         run: python scripts/generate_demo_data.py
       - name: Lint
-        run: python -m ruff check src scripts tests
+        run: |
+          python -m ruff --version
+          python -m ruff check src scripts tests --output-format=github
       - name: Test
         run: python -m pytest -q
       - name: Train demo
